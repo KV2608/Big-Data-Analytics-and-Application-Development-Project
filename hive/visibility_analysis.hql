@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS VD_records26;
+
+CREATE TABLE VD_records26 (
+    USAF_ID STRING,
+    Visibility_Distance INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t';
+
+LOAD DATA LOCAL INPATH
+'/home/student26/OUTPUT_VD/part-00000'
+OVERWRITE INTO TABLE VD_records26;
+
+SELECT
+    USAF_ID,
+    AVG(Visibility_Distance) AS avg_visibility
+FROM VD_records26
+GROUP BY USAF_ID;
